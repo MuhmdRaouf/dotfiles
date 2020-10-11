@@ -22,7 +22,7 @@ else
   git clean -fdx && git reset --hard && git pull
 fi
 
-ConfigArray=("git" "skhd" "zsh")
+ConfigArray=("doom" "git" "skhd" "zsh")
 for conf in ${ConfigArray[*]}; do
   CONF_DOTFILES_PATH="$DOTFILES_PATH/$conf"
   CONF_XDG_PATH="$XDG_CONFIG_HOME/$conf"
