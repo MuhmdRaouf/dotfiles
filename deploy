@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+set -e
+
+### A tidy $HOME is a tidy mind
+# Obey XDG conventions;
+XDG_CONFIG_HOME="$HOME/.config";
+XDG_CACHE_HOME="$HOME/.cache";
+XDG_DATA_HOME="$HOME/.local/share";
+XDG_BIN_HOME="$HOME/.local/bin";
+
+DOTFILES_PATH="$XDG_CONFIG_HOME/dotfiles"
+
+XDGPathsArray=($XDG_CONFIG_HOME $XDG_CACHE_HOME $XDG_DATA_HOME $XDG_BIN_HOME)
+for xdg_path in ${XDGPathsArray[*]}; do
+  mkdir -p $xdg_path
+done
+
+if [ ! -d $DOTFILES_PATH ]; then
+  git clone git@github.com:MuhmdRaouf/dotfiles.git $DOTFILES_PATH
+else
+  git clean -fdx && git reset --hard && git pull
+fi
+
