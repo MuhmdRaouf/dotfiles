@@ -22,3 +22,16 @@ else
   git clean -fdx && git reset --hard && git pull
 fi
 
+ConfigArray=("git")
+for conf in ${ConfigArray[*]}; do
+  CONF_DOTFILES_PATH="$DOTFILES_PATH/$conf"
+  CONF_XDG_PATH="$XDG_CONFIG_HOME/$conf"
+  if [ ! -d $CONF_XDG_PATH ]; then
+    ln -sf $CONF_DOTFILES_PATH $XDG_CONFIG_HOME
+  fi
+done
+
+SymLinkArray=("gitconfig")
+for conf in ${SymLinkArray[*]}; do
+  ln -sf "$DOTFILES_PATH/$conf" "$HOME/.$conf"
+done
