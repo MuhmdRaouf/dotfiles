@@ -1,0 +1,257 @@
+# ################################################################ #
+# THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
+# FOR SIMPLE EXAMPLE MAPPINGS LOOK FURTHER DOWN THIS FILE..        #
+# ################################################################ #
+
+# A list of all built-in modifier and literal keywords can
+# be found at https://github.com/koekeishiya/skhd/issues/1
+#
+# A hotkey is written according to the following rules:
+#
+#   hotkey       = <mode> '<' <action> | <action>
+#
+#   mode         = 'name of mode' | <mode> ',' <mode>
+#
+#   action       = <keysym> '[' <proc_map_lst> ']' | <keysym> '->' '[' <proc_map_lst> ']'
+#                  <keysym> ':' <command>          | <keysym> '->' ':' <command>
+#                  <keysym> ';' <mode>             | <keysym> '->' ';' <mode>
+#
+#   keysym       = <mod> '-' <key> | <key>
+#
+#   mod          = 'modifier keyword' | <mod> '+' <mod>
+#
+#   key          = <literal> | <keycode>
+#
+#   literal      = 'single letter or built-in keyword'
+#
+#   keycode      = 'apple keyboard kVK_<Key> values (0x3C)'
+#
+#   proc_map_lst = * <proc_map>
+#
+#   proc_map     = <string> ':' <command> | <string>     '~' |
+#                  '*'      ':' <command> | '*'          '~'
+#
+#   string       = '"' 'sequence of characters' '"'
+#
+#   command      = command is executed through '$SHELL -c' and
+#                  follows valid shell syntax. if the $SHELL environment
+#                  variable is not set, it will default to '/bin/bash'.
+#                  when bash is used, the ';' delimeter can be specified
+#                  to chain commands.
+#
+#                  to allow a command to extend into multiple lines,
+#                  prepend '\' at the end of the previous line.
+#
+#                  an EOL character signifies the end of the bind.
+#
+#   ->           = keypress is not consumed by skhd
+#
+#   *            = matches every application not specified in <proc_map_lst>
+#
+#   ~            = application is unbound and keypress is forwarded per usual, when specified in a <proc_map>
+#
+# A mode is declared according to the following rules:
+#
+#   mode_decl = '::' <name> '@' ':' <command> | '::' <name> ':' <command> |
+#               '::' <name> '@'               | '::' <name>
+#
+#   name      = desired name for this mode,
+#
+#   @         = capture keypresses regardless of being bound to an action
+#
+#   command   = command is executed through '$SHELL -c' and
+#               follows valid shell syntax. if the $SHELL environment
+#               variable is not set, it will default to '/bin/bash'.
+#               when bash is used, the ';' delimeter can be specified
+#               to chain commands.
+#
+#               to allow a command to extend into multiple lines,
+#               prepend '\' at the end of the previous line.
+#
+#               an EOL character signifies the end of the bind.
+
+# ############################################################### #
+# THE FOLLOWING SECTION CONTAIN SIMPLE MAPPINGS DEMONSTRATING HOW #
+# TO INTERACT WITH THE YABAI WM. THESE ARE SUPPOSED TO BE USED AS #
+# A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
+# ############################################################### #
+
+# focus window
+# alt - h : yabai --message window --focus west
+
+# swap managed window
+# shift + alt - h : yabai --message window --swap north
+
+# move managed window
+# shift + cmd - h : yabai --message window --warp east
+
+# balance size of windows
+# shift + alt - 0 : yabai --message space --balance
+
+# make floating window fill screen
+# shift + alt - up     : yabai --message window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+# shift + alt - left   : yabai --message window --grid 1:2:0:0:1:1
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+# shift + cmd - n : yabai --message space --create && \
+#                   index="$(yabai --message query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+#                   yabai --message window --space "${index}" && \
+#                   yabai --message space --focus "${index}"
+
+# fast focus desktop
+# cmd + alt - x : yabai --message space --focus recent
+# cmd + alt - 1 : yabai --message space --focus 1
+
+# send window to desktop and follow focus
+# shift + cmd - z : yabai --message window --space next; yabai --message space --focus next
+# shift + cmd - 2 : yabai --message window --space  2; yabai --message space --focus 2
+
+# focus monitor
+# ctrl + alt - z  : yabai --message display --focus prev
+# ctrl + alt - 3  : yabai --message display --focus 3
+
+# send window to monitor and follow focus
+# ctrl + cmd - c  : yabai --message window --display next; yabai --message display --focus next
+# ctrl + cmd - 1  : yabai --message window --display 1; yabai --message display --focus 1
+
+# move floating window
+# shift + ctrl - a : yabai --message window ---messageove rel:-20:0
+# shift + ctrl - s : yabai --message window ---messageove rel:0:20
+
+# increase window size
+# shift + alt - a : yabai --message window --resize left:-20:0
+# shift + alt - w : yabai --message window --resize top:0:-20
+
+# decrease window size
+# shift + cmd - s : yabai --message window --resize bottom:0:-20
+# shift + cmd - w : yabai --message window --resize top:0:20
+
+# set insertion point in focused container
+# ctrl + alt - h : yabai --message window --insert west
+
+# toggle window zoom
+# alt - d : yabai --message window --toggle zoom-parent
+# alt - f : yabai --message window --toggle zoom-fullscreen
+
+# toggle window split type
+# alt - e : yabai --message window --toggle split
+
+# float / unfloat window and center on screen
+# alt - t : yabai --message window --toggle float;\
+#           yabai --message window --grid 4:4:1:1:2:2
+
+# toggle sticky(+float), topmost, border and picture-in-picture
+# alt - p : yabai --message window --toggle sticky;\
+#           yabai --message window --toggle topmost;\
+#           yabai --message window --toggle border;\
+#           yabai --message window --toggle pip
+
+# Quickly restart Yabai
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# Quickly Open Apps
+cmd + alt - c : open /Applications/Google\ Chrome.app
+cmd + alt - e : open /Applications/Emacs.app
+cmd - return  : open /Applications/iTerm.app
+cmd + alt - m : open /Applications/Mail.app
+cmd + alt - z : open /Applications/Zoho\ Mail\ -\ Desktop.app
+cmd + alt - w : open /Applications/WhatsApp.app
+cmd + alt - t : open /Applications/Telegram.app
+cmd + alt - s : open /Applications/Slack.app
+cmd + alt - d : open /Applications/Discord.app
+cmd + alt - v : open /Applications/Visual\ Studio\ Code.app
+cmd + alt - p : open /Applications/Microsoft\ Teams.app
+
+# focus window
+alt - h : yabai --message window --focus west
+alt - j : yabai --message window --focus south
+alt - k : yabai --message window --focus north
+alt - l : yabai --message window --focus east
+
+# swap window
+shift + alt - h : yabai --message window --swap west
+shift + alt - j : yabai --message window --swap south
+shift + alt - k : yabai --message window --swap north
+shift + alt - l : yabai --message window --swap east
+
+# move window
+shift + cmd - h : yabai --message window --warp west
+shift + cmd - j : yabai --message window --warp south
+shift + cmd - k : yabai --message window --warp north
+shift + cmd - l : yabai --message window --warp east
+
+# create desktop, move window and follow focus
+shift + alt - n : yabai --message space --create && \
+                  index="$(yabai --message query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                  yabai --message window --space "${index}" && \
+                  yabai --message space --focus "${index}"
+
+# create desktop and follow focus
+alt - n : yabai --message space --create && \
+                  index="$(yabai --message query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                  yabai --message space --focus "${index}"
+
+# destroy desktop
+cmd + alt - w : yabai --message space --destroy
+
+# fast focus desktop
+cmd + alt - h : yabai --message space --focus prev
+cmd + alt - l : yabai --message space --focus next
+cmd + alt - 1 : yabai --message space --focus 1
+cmd + alt - 2 : yabai --message space --focus 2
+cmd + alt - 3 : yabai --message space --focus 3
+cmd + alt - 4 : yabai --message space --focus 4
+cmd + alt - 5 : yabai --message space --focus 5
+cmd + alt - 6 : yabai --message space --focus 6
+cmd + alt - 7 : yabai --message space --focus 7
+cmd + alt - 8 : yabai --message space --focus 8
+cmd + alt - 9 : yabai --message space --focus 9
+cmd + alt - 0 : yabai --message space --focus 10
+
+# focus monitor
+ctrl + alt - h : yabai --message display --focus prev
+ctrl + alt - l : yabai --message display --focus next
+ctrl + alt - 1 : yabai --message display --focus 1
+ctrl + alt - 2 : yabai --message display --focus 2
+
+# send window to monitor and follow focus
+ctrl + cmd - h : yabai --message window --display prev; yabai --message display --focus prev
+ctrl + cmd - l : yabai --message window --display next; yabai --message display --focus next
+ctrl + cmd - 1 : yabai --message window --display 1; yabai --message display --focus 1
+ctrl + cmd - 2 : yabai --message window --display 2; yabai --message display --focus 2
+
+# increase window size
+shift + alt - a : yabai --message window --resize left:-20:0
+shift + alt - s : yabai --message window --resize bottom:0:20
+shift + alt - w : yabai --message window --resize top:0:-20
+shift + alt - d : yabai --message window --resize right:20:0
+
+# decrease window size
+shift + cmd - a : yabai --message window --resize left:20:0
+shift + cmd - s : yabai --message window --resize bottom:0:-20
+shift + cmd - w : yabai --message window --resize top:0:20
+shift + cmd - d : yabai --message window --resize right:-20:0
+
+# set insertion point in focused container
+alt - h : yabai --message window --insert west
+alt - j : yabai --message window --insert south
+alt - k : yabai --message window --insert north
+alt - l : yabai --message window --insert east
+
+# rotate tree
+alt - r : yabai --message space --rotate 90
+
+# toggle window fullscreen zoom
+alt - f : yabai --message window --toggle zoom-fullscreen
+
+# toggle window native fullscreen
+shift + alt - f : yabai --message window --toggle native-fullscreen
+
+# toggle window split type
+alt - e : yabai --message window --toggle split
+
+# float / unfloat window and center on screen
+alt - t : yabai --message window --toggle float;\
+          yabai --message window --grid 7:7:1:1:5:5
