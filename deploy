@@ -13,7 +13,7 @@ DOTFILES_PATH="$XDG_CONFIG_HOME/dotfiles"
 
 XDGPathsArray=($XDG_CONFIG_HOME $XDG_CACHE_HOME $XDG_DATA_HOME $XDG_BIN_HOME)
 for xdg_path in ${XDGPathsArray[*]}; do
-  mkdir -p $xdg_path
+  mkdir -p "$xdg_path"
 done
 
 if [ ! -d $DOTFILES_PATH ]; then
@@ -22,7 +22,7 @@ else
   git clean -fdx && git reset --hard && git pull
 fi
 
-ConfigArray=("doom" "git" "skhd" "zsh")
+ConfigArray=("doom" "git" "skhd" "spacebar" "zsh")
 for conf in ${ConfigArray[*]}; do
   CONF_DOTFILES_PATH="$DOTFILES_PATH/$conf"
   CONF_XDG_PATH="$XDG_CONFIG_HOME/$conf"
@@ -35,3 +35,4 @@ SymLinkArray=("gitconfig" "tmux.conf" "zshrc")
 for conf in ${SymLinkArray[*]}; do
   ln -sf "$DOTFILES_PATH/$conf" "$HOME/.$conf"
 done
+
