@@ -31,7 +31,7 @@ for conf in ${ConfigArray[*]}; do
   fi
 done
 
-SymLinkArray=("gitconfig" "tmux.conf" "zshrc")
+SymLinkArray=("gitconfig" "tmux.conf" "zshrc" "zshenv")
 for conf in ${SymLinkArray[*]}; do
   ln -sf "$DOTFILES_PATH/$conf" "$HOME/.$conf"
 done
