@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+source "$XDG_CONFIG_HOME/yabai/constants"
+
+yabai --message rule --add app="^${CHROME}$"     native-fullscreen=on
+yabai --message rule --add app="^${EMACS}$"      native-fullscreen=on
+yabai --message rule --add app="^${ITERM2}$"     native-fullscreen=on
+yabai --message rule --add app="^${VSCODE}$"     native-fullscreen=on
+yabai --message rule --add app="^${MAC_SYSTEM}$" manage=off
+
+echo "yabai rules loaded.."
+
