@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+# Description:
+#  wrapper script to launch jodin3 jar file
+# 
+# Usage:
+#  $ jodin32
+
+java --module-path $(jenv javahome)/lib/openjfx --add-modules javafx.controls,javafx.fxml,javafx.web -jar $XDG_BIN_HOME/jodin3.jar &
+
