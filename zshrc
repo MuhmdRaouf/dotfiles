@@ -29,4 +29,3 @@ source $XDG_CONFIG_HOME/zsh/environments/main.zsh
 source $XDG_CONFIG_HOME/zsh/aliases/main.zsh
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # zprof
-
