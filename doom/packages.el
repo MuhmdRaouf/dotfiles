@@ -9,8 +9,8 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 (package! nvm)
-(package! poetry)
 (package! super-save)
+(package! graphql-mode)
 (package! heaven-and-hell)
 (package! smooth-scrolling)
 (package! string-inflection)
