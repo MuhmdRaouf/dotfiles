@@ -1,6 +1,6 @@
-#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#"""                               ZSH Settings                               """
-#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
+#""                                 ZSH Settings                              ""#
+##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 ZSH_CONFIGRATION_DIRECTORY="$XDG_CONFIG_HOME/zsh"
 [ -d "$ZSH_CONFIGRATION_DIRECTORY" ] || mkdir -p "$ZSH_CONFIGRATION_DIRECTORY"
 
@@ -33,4 +33,4 @@ setopt PROMPT_SUBST
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES # fix "+[__NSPlaceholderDictionary initialize] may have been in progress in another thread when fork() was called" issue
 path=("/usr/local/sbin" $path)
 export PATH
-#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##

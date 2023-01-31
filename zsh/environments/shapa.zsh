@@ -1,5 +1,7 @@
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-#""                                     iTerm                                 ""#
+#""                                   Shapa                                   ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-[[ -e "${HOME}/.iterm2_shell_integration.zsh" ]] && source "${HOME}/.iterm2_shell_integration.zsh"
+export DB_HOSTNAME="localhost"
+export DB_USERNAME="postgres"
+export DB_PASSWORD="password"
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
