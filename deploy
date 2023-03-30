@@ -26,7 +26,7 @@ else
   git clean -fdx && git reset --hard && git pull
 fi
 
-ConfigArray=("doom" "git" "zsh")
+ConfigArray=("doom" "git" "tmux" "zsh")
 for conf in ${ConfigArray[*]}; do
   CONF_DOTFILES_PATH="$DOTFILES_PATH/$conf"
   CONF_XDG_PATH="$XDG_CONFIG_HOME/$conf"
@@ -35,7 +35,7 @@ for conf in ${ConfigArray[*]}; do
   fi
 done
 
-SymLinkArray=("gitconfig" "tmux.conf" "zshrc" "zshenv")
+SymLinkArray=("gitconfig" "zshrc" "zshenv")
 for conf in ${SymLinkArray[*]}; do
   ln -sf "$DOTFILES_PATH/$conf" "$HOME/.$conf"
 done
