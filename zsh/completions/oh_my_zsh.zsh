@@ -14,6 +14,5 @@ zinit as"completion" light-mode wait blockf lucid for \
     OMZP::pod/_pod \
     OMZP::rails/_rails \
     OMZP::react-native/_react-native \
-    OMZP::xcode/_xcselv \
     OMZP::yarn/_yarn
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
