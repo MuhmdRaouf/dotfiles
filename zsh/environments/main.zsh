@@ -13,5 +13,5 @@ source $XDG_CONFIG_HOME/zsh/environments/doom_emacs.zsh
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 #""                                  Shapa                                    ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-source $XDG_CONFIG_HOME/zsh/aliases/shapa.zsh
+source $XDG_CONFIG_HOME/zsh/environments/shapa.zsh
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
