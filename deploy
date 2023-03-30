@@ -26,7 +26,7 @@ else
   git clean -fdx && git reset --hard && git pull
 fi
 
-ConfigArray=("doom" "git" "skhd" "spacebar" "yabai" "zsh")
+ConfigArray=("doom" "git" "zsh")
 for conf in ${ConfigArray[*]}; do
   CONF_DOTFILES_PATH="$DOTFILES_PATH/$conf"
   CONF_XDG_PATH="$XDG_CONFIG_HOME/$conf"
@@ -40,4 +40,6 @@ for conf in ${SymLinkArray[*]}; do
   ln -sf "$DOTFILES_PATH/$conf" "$HOME/.$conf"
 done
 
+# link custom bin folder
+[ -d "$XDG_BIN_HOME" ] || rm -rf "$XDG_BIN_HOME"
 ln -sf "$DOTFILES_PATH/bin" $XDG_BIN_HOME
