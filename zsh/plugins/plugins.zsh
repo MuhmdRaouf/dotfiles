@@ -16,7 +16,7 @@ zinit light zdharma-continuum/history-search-multi-word
 zinit ice wait nocd silent
 zinit light zsh-users/zsh-history-substring-search
 
-zinit ice wait nocd silent
+zinit ice trackbinds bindmap"^B -> ^Z^B" lucid
 zinit light zdharma-continuum/zbrowse
 
 zinit ice wait nocd silent
