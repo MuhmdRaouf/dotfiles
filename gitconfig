@@ -18,5 +18,7 @@
 	commit = yellow bold
 	whitespace = red reverse
 [user]
-	name = Mohammed Abdel Raouf
+	name = Raouf
 	email = mohammed@raouf.me
+[commit]
+	gpgsign = true
