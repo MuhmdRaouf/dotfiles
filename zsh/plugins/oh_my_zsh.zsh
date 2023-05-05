@@ -8,6 +8,7 @@ zinit light-mode wait nocd silent for \
     OMZL::clipboard.zsh \
     OMZL::compfix.zsh \
     OMZL::completion.zsh \
+    OMZL::functions.zsh \
     OMZL::git.zsh \
     OMZL::spectrum.zsh \
     OMZL::termsupport.zsh
