@@ -21,7 +21,7 @@ java_macos_integration_enable = yes
 
 EOM
 
-zinit ice atload"export ASDF_DIR=\"$ZINIT[PLUGINS_DIR]/asdf-vm---asdf\"; bash asdf.sh" ver="v0.11.3"
+zinit ice atload"export ASDF_DIR=\"$ZINIT[PLUGINS_DIR]/asdf-vm---asdf\"; bash asdf.sh" ver="v0.12.0"
 zinit light asdf-vm/asdf
 
 path=("$ASDF_DIR/bin" $path)
