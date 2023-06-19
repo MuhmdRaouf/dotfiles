@@ -4,7 +4,6 @@
 zinit as"completion" light-mode wait blockf lucid for \
     OMZP::adb/_adb \
     OMZP::bundler/_bundler \
-    OMZP::docker/_docker \
     OMZP::docker-compose/_docker-compose \
     OMZP::gem/_gem \
     OMZP::golang/_golang \
