@@ -83,34 +83,6 @@ function install_bin() {
   fi
 }
 
-# Installs Homebrew formulae and runs macOS specific
-function install_homebrew_core() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    green_echo "
-      Homebrew Core Formulae/Casks:
-      Existing formulae will be uninstalled.
-      Some casks might not be compitable with non-macOS systems.
-      Do you want to proceed?
-    "
-    if selection_prompt "Homebrew Core "; then
-      brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileCore
-    fi
-  fi
-}
-
-function install_homebrew_optional() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    green_echo "
-      Homebrew Optional Formulae/Casks:
-      This might take a while, and I honestly recommend you to go through each program manually.
-      Do you want to proceed?
-    "
-    if selection_prompt "Homebrew Optional "; then
-      brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileOptional
-    fi
-  fi
-}
-
 function install_bottom() {
   if selection_prompt "Bottom 󱕎"; then
     local XDG_BTM_CONFIG_HOME="${XDG_DOTFILES_HOME}/bottom"
@@ -118,45 +90,10 @@ function install_bottom() {
   fi
 }
 
-function install_doom_emacs() {
-  if selection_prompt "Doom Emacs "; then
-    local XDG_DOOM_CONFIG_HOME="${XDG_DOTFILES_HOME}/doom"
-    symlink "${XDG_DOOM_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
-  fi
-}
-
-function install_fsh() {
-  if selection_prompt "ZSH Fast Syntax Highlighting "; then
-    local XDG_FSH_CONFIG_HOME="${XDG_DOTFILES_HOME}/fsh"
-    symlink "${XDG_FSH_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
-  fi
-}
-
-function install_ghostty() {
-  if selection_prompt "Ghostty 󰊠"; then
-    local XDG_GHOSTTY_CONFIG_HOME="${XDG_DOTFILES_HOME}/ghostty"
-    symlink "${XDG_GHOSTTY_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
-  fi
-}
-
 function install_git() {
   if selection_prompt "Git "; then
     local XDG_GIT_CONFIG_HOME="${XDG_DOTFILES_HOME}/git"
     symlink "${XDG_GIT_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
-  fi
-}
-
-function install_k9s() {
-  if selection_prompt "K9s ⎈"; then
-    local XDG_K9S_CONFIG_HOME="${XDG_DOTFILES_HOME}/k9s"
-    symlink "${XDG_K9S_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
-  fi
-}
-
-function install_mise() {
-  if selection_prompt "mise-en-place "; then
-    local XDG_MISE_CONFIG_HOME="${XDG_DOTFILES_HOME}/mise"
-    symlink "${XDG_MISE_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
   fi
 }
 
@@ -208,15 +145,8 @@ function install() {
 
   clone_dotfiles
   install_bin
-  install_homebrew_core
-  install_homebrew_optional
   install_bottom
-  install_doom_emacs
-  install_fsh
-  install_ghostty
   install_git
-  install_k9s
-  install_mise
   install_neovim
   install_starship
   install_tmux
@@ -247,14 +177,8 @@ function help() {
       --clone-dotfiles             : Clone configuration repository.
       --install                    : Deploy configuration symlinks for cross-platform utilities.
       --install-bin                : Install binary directory.
-      --install-homebrew-core      : Install homebrew core packages.
-      --install-homebrew-optional  : Install homebrew optional packages.
       --install_bottom             : Deploy bottom configuration symlinks.
-      --install-doom-emacs         : Deploy doom emacs configuration symlinks.
-      --install-fsh                : Deploy zsh fast syntax highlighting configuration symlinks.
       --install-git                : Deploy git configuration symlinks.
-      --install-k9s                : Deploy k9s configuration symlinks.
-      --install-mise               : Deploy mise-en-place configuration symlinks.
       --install-neovim             : Deploy neovim configuration symlinks.
       --install-starship           : Deploy starship configuration symlinks.
       --install-tmux               : Deploy tmux configuration symlinks.
@@ -273,32 +197,11 @@ function main() {
     "--install-bin")
       install_bin
     ;;
-    "--install-homebrew-core")
-      install_homebrew_core
-    ;;
-    "--install-homebrew-optional")
-      install_homebrew_optional
-    ;;
     "--install-bottom")
       install_bottom
     ;;
-    "--install-doom-emacs")
-      install_doom_emacs
-    ;;
-    "--install-fsh")
-      install_fsh
-    ;;
-    "--install-ghostty")
-      install_ghostty
-    ;;
     "--install-git")
       install_git
-    ;;
-    "--install-k9s")
-      install_k9s
-    ;;
-    "--install-mise")
-      install_mise
     ;;
     "--install-neovim")
       install_neovim
