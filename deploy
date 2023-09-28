@@ -8,38 +8,41 @@ export XDG_CONFIG_HOME="$HOME/.config";
 [ -d "$XDG_CONFIG_HOME" ] || mkdir -p "$XDG_CONFIG_HOME"
 export XDG_CACHE_HOME="$HOME/.cache";
 [ -d "$XDG_CACHE_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
-export XDG_DATA_HOME="$HOME/.local/share";
+export XDG_LOCAL_HOME="$HOME/.local";
+[ -d "$XDG_LOCAL_HOME" ] || mkdir -p "$XDG_LOCAL_HOME"
+export XDG_DATA_HOME="$XDG_LOCAL_HOME/share";
 [ -d "$XDG_DATA_HOME" ] || mkdir -p "$XDG_DATA_HOME"
-export XDG_BIN_HOME="$HOME/.local/bin";
-[ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
+export XDG_STATE_HOME="$XDG_LOCAL_HOME/state";
+[ -d "$XDG_STATE_HOME" ] || mkdir -p "$XDG_STATE_HOME"
+export XDG_BIN_HOME="$XDG_LOCAL_HOME/bin";
+[ -d "$XDG_BIN_HOME" ] && rm -rf "$XDG_BIN_HOME"
 
-DOTFILES_PATH="$XDG_CONFIG_HOME/dotfiles"
+XDG_DOTFILES_HOME="$XDG_CONFIG_HOME/dotfiles"
 
 XDGPathsArray=($XDG_CONFIG_HOME $XDG_CACHE_HOME $XDG_DATA_HOME $XDG_BIN_HOME)
 for xdg_path in ${XDGPathsArray[*]}; do
   mkdir -p "$xdg_path"
 done
 
-if [ ! -d $DOTFILES_PATH ]; then
-  git clone git@github.com:MuhmdRaouf/dotfiles.git $DOTFILES_PATH
+if [ ! -d $XDG_DOTFILES_HOME ]; then
+  git clone git@github.com:MuhmdRaouf/dotfiles.git $XDG_DOTFILES_HOME
 else
   git clean -fdx && git reset --hard && git pull
 fi
 
 ConfigArray=("doom" "git" "tmux" "zsh")
 for conf in ${ConfigArray[*]}; do
-  CONF_DOTFILES_PATH="$DOTFILES_PATH/$conf"
+  CONF_XDG_DOTFILES_HOME="$XDG_DOTFILES_HOME/$conf"
   CONF_XDG_PATH="$XDG_CONFIG_HOME/$conf"
   if [ ! -d $CONF_XDG_PATH ]; then
-    ln -sf $CONF_DOTFILES_PATH $XDG_CONFIG_HOME
+    ln -sf $CONF_XDG_DOTFILES_HOME $XDG_CONFIG_HOME
   fi
 done
 
 SymLinkArray=("gitconfig" "zshrc" "zshenv")
 for conf in ${SymLinkArray[*]}; do
-  ln -sf "$DOTFILES_PATH/$conf" "$HOME/.$conf"
+  ln -sf "$XDG_DOTFILES_HOME/$conf" "$HOME/.$conf"
 done
 
 # link custom bin folder
-[ -d "$XDG_BIN_HOME" ] || rm -rf "$XDG_BIN_HOME"
-ln -sf "$DOTFILES_PATH/bin" $XDG_BIN_HOME
+ln -sf "$XDG_DOTFILES_HOME/bin" $XDG_LOCAL_HOME
