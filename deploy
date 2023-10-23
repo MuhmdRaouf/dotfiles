@@ -14,8 +14,6 @@ export XDG_DATA_HOME="$XDG_LOCAL_HOME/share";
 [ -d "$XDG_DATA_HOME" ] || mkdir -p "$XDG_DATA_HOME"
 export XDG_STATE_HOME="$XDG_LOCAL_HOME/state";
 [ -d "$XDG_STATE_HOME" ] || mkdir -p "$XDG_STATE_HOME"
-export XDG_BIN_HOME="$XDG_LOCAL_HOME/bin";
-[ -d "$XDG_BIN_HOME" ] && rm -rf "$XDG_BIN_HOME"
 
 XDG_DOTFILES_HOME="$XDG_CONFIG_HOME/dotfiles"
 
@@ -45,4 +43,5 @@ for conf in ${SymLinkArray[*]}; do
 done
 
 # link custom bin folder
-ln -sf "$XDG_DOTFILES_HOME/bin" $XDG_LOCAL_HOME
+export XDG_BIN_HOME="$XDG_LOCAL_HOME/bin";
+[ -d "$XDG_BIN_HOME" ] || ln -sf "$XDG_DOTFILES_HOME/bin" $XDG_LOCAL_HOME
