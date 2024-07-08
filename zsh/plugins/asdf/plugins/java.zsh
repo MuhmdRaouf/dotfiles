@@ -2,5 +2,5 @@
 #""                                Java Configs                               ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 export SET_JAVA_HOME_SCRIPT="$ASDF_DATA_DIR/plugins/java/set-java-home.zsh"
-[[ -e "$SET_JAVA_HOME_SCRIPT" ]] && . $SET_JAVA_HOME_SCRIPT
+[[ -e "$SET_JAVA_HOME_SCRIPT" ]] && source "$SET_JAVA_HOME_SCRIPT"
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
