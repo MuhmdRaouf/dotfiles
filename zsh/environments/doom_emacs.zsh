@@ -2,6 +2,6 @@
 #""                                 Doom Emacs                                ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 export DOOM_EMACS_HOME="$XDG_CONFIG_HOME/emacs/bin"
-path=($DOOM_EMACS_HOME $path)
+path=("$DOOM_EMACS_HOME" $path)
 export PATH
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
