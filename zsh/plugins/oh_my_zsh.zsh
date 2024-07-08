@@ -22,6 +22,7 @@ zinit light-mode wait nocd silent for \
     OMZP::composer/composer.plugin.zsh \
     OMZP::git/git.plugin.zsh \
     OMZP::git-auto-fetch/git-auto-fetch.plugin.zsh \
+    OMZP::gnu-utils/gnu-utils.plugin.zsh \
     OMZP::gpg-agent/gpg-agent.plugin.zsh \
     OMZP::gradle/gradle.plugin.zsh \
     OMZP::history-substring-search/history-substring-search.plugin.zsh \
