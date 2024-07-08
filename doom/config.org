@@ -61,12 +61,20 @@ Projectile
 #+BEGIN_SRC emacs-lisp
 (setq projectile-project-search-path 
   '("~/.work/" "~/playground/"))
+#+END_SRC
 
+Treemacs theme
+#+BEGIN_SRC emacs-lisp
 (after! doom-themes 
   (setq doom-themes-treemacs-theme "doom-colors"))
 #+END_SRC
 
-Whenever you reconfigure a package, 
+sane undo like vim :D
+#+BEGIN_SRC emacs-lisp
+  (setq evil-want-fine-undo t)
+#+END_SRC
+
+Whenever you reconfigure a package,
 make sure to wrap your config in an `after!' block,
 otherwise Doom's defaults may override your settings. E.g.
 

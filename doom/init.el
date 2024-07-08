@@ -37,7 +37,6 @@
               +github                 ; :smile:
               +unicode)               ; 🙂
        hl-todo                        ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       ;;hydra                          ;
        indent-guides                  ; highlighted indent columns
        (ligatures +extra)             ; ligatures and symbols to make your code pretty again
        ;;minimap                        ; show a map of the code on the side
@@ -109,8 +108,6 @@
        ;;pass                           ; password manager for nerds
        ;;pdf                          ; pdf enhancements
        ;;prodigy                        ; FIXME managing external services & code builders
-       rgb                            ; creating color strings
-       taskrunner                     ; taskrunner for all your projects
        (terraform +lsp)               ; infrastructure as code
        tmux                           ; an API for interacting with tmux
        tree-sitter                    ; syntax and parsing, sitting in a tree...
@@ -174,9 +171,8 @@
        ;;purescript                     ; javascript, but functional
        (python +lsp                   ; beautiful is better than ugly
                +cython                ;
-               +tree-sitter           ;
                +poetry                ;
-               +pyenv)                ;
+               +tree-sitter)          ;
        ;;qt                             ; the 'cutest' gui framework ever
        ;;racket                         ; a DSL for DSLs
        ;;raku                           ; the artist formerly known as perl6
@@ -212,7 +208,6 @@
        ;;everywhere                     ; *leave* Emacs!? You must be joking
        irc                            ; how neckbeards socialize
        (rss +org)                     ; emacs as an RSS reader
-       ;;twitter                        ; twitter client https://twitter.com/vnought
 
        :config
        literate
