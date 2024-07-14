@@ -9,6 +9,7 @@ fb-idb
 isort
 nginx-language-server
 nose
+pynvim
 pip
 pipenv
 pipx
