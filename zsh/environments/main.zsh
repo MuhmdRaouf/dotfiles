@@ -16,9 +16,8 @@ source $XDG_CONFIG_HOME/zsh/environments/doom_emacs.zsh
 source $XDG_CONFIG_HOME/zsh/environments/gnu.zsh
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 
-
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-#""                                  Shapa                                    ""#
+#""                                  OCI                                      ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-source $XDG_CONFIG_HOME/zsh/environments/shapa.zsh
+source $XDG_CONFIG_HOME/zsh/environments/oci.zsh
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
