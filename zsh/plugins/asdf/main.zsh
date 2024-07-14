@@ -12,4 +12,5 @@ source $XDG_CONFIG_HOME/zsh/plugins/asdf/plugins/java.zsh
 source $XDG_CONFIG_HOME/zsh/plugins/asdf/plugins/nodejs.zsh
 source $XDG_CONFIG_HOME/zsh/plugins/asdf/plugins/python.zsh
 source $XDG_CONFIG_HOME/zsh/plugins/asdf/plugins/ruby.zsh
+source $XDG_CONFIG_HOME/zsh/plugins/asdf/plugins/rust.zsh
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
