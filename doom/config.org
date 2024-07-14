@@ -74,6 +74,13 @@ sane undo like vim :D
   (setq evil-want-fine-undo t)
 #+END_SRC
 
+fix Eager macro-expansion failure
+#+begin_src emacs-lisp
+(after! lsp-mode
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/3577#issuecomment-1709232622
+  (delete 'lsp-terraform lsp-client-packages))
+#+end_src
+
 Whenever you reconfigure a package,
 make sure to wrap your config in an `after!' block,
 otherwise Doom's defaults may override your settings. E.g.
