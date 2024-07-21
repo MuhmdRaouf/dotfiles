@@ -28,7 +28,7 @@ else
   git clean -fdx && git reset --hard && git pull
 fi
 
-ConfigArray=("doom" "git" "tmux" "zsh")
+ConfigArray=("doom" "git" "nvim" "tmux" "zsh")
 for conf in ${ConfigArray[*]}; do
   CONF_XDG_DOTFILES_HOME="$XDG_DOTFILES_HOME/$conf"
   CONF_XDG_PATH="$XDG_CONFIG_HOME/$conf"

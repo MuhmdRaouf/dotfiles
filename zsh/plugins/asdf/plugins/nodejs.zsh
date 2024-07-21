@@ -10,6 +10,7 @@ graphql-language-service-cli
 intelephense
 js-beautify
 marked
+neovim
 npm-check-updates
 pm2
 pnpm
