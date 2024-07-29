@@ -10,7 +10,8 @@ you do not need to run 'doom sync' after modifying this file!
 Some functionality uses this to identify you,
 e.g. GPG configuration, email, clients, file templates and snippets. It is optional.
 #+BEGIN_SRC emacs-lisp
-(setq user-full-name "Raouf"
+(setq 
+  user-full-name "Raouf"
       user-mail-address "mohammed@raouf.me")
 #+END_SRC
 
@@ -25,7 +26,8 @@ Doom exposes five (optional) variables for controlling fonts in Doom:
 See 'C-h v doom-font' for documentation and more examples of what they accept.
 For example:
 #+BEGIN_SRC emacs-lisp
-(setq doom-font 
+(setq 
+  doom-font 
         (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium)
       doom-variable-pitch-font 
         (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium)
@@ -59,8 +61,7 @@ change `org-directory'. It must be set before org loads!
 
 Projectile
 #+BEGIN_SRC emacs-lisp
-(setq projectile-project-search-path 
-  '("~/.work/" "~/playground/"))
+(setq projectile-project-search-path '(("~/.work/" . 2) "~/playground/"))
 #+END_SRC
 
 Treemacs theme
