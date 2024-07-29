@@ -9,6 +9,15 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
+;; Free, ultrafast Copilot alternative for Emacs
+(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
+
+;; corfu-prescient for better sorting and filtering
+(package! corfu-prescient)
+
+;; vertico-prescient for better sorting and filtering
+(package! vertico-prescient)
+
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/radian-software/straight.el#the-recipe-format

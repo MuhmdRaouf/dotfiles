@@ -21,11 +21,15 @@
        ;;layout                       ; auie,ctsrnm is the superior home row
 
        :completion
-       company                        ; the ultimate code completion backend
-       ;;(corfu +orderless)             ; complete with cap(f), cape and a flying feather!
+       ;;company                        ; the ultimate code completion backend
+       (corfu +icons                  ; complete with cap(f), cape and a flying feather!
+              +orderless              ;
+              +dabbrev)               ;
        ;;helm                           ; the *other* search engine for love and life
        ;;ido                            ; the other *other* search engine...
-       ;;ivy                            ; a search engine for love and life
+       ;;(ivy +fuzzy                    ; a search engine for love and life
+       ;;     +icons                    ;
+       ;;     +perscint)                ;
        (vertico +icons)               ; the search engine of the future
 
        :ui
@@ -77,7 +81,7 @@
        vc                             ; version-control and Emacs, sitting in a tree
 
        :term
-       ;;eshell                         ; the elisp shell that works everywhere
+       eshell                         ; the elisp shell that works everywhere
        ;;shell                          ; simple shell REPL for Emacs
        ;;term                           ; basic terminal emulator for Emacs
        vterm                          ; the best terminal emulation in Emacs
@@ -99,7 +103,7 @@
        (debugger +lsp)                ; FIXME stepping through code, to help you add bugs
        ;;direnv                         ;
        (docker +lsp)                  ;
-       ;;editorconfig                   ; let someone else argue about tabs vs spaces
+       editorconfig                   ; let someone else argue about tabs vs spaces
        ;;ein                            ; tame Jupyter notebooks with emacs
        (eval +overlay)                ; run code, run (also, repls)
        (lookup +dictionary)           ; navigate your code and its documentation
@@ -161,10 +165,12 @@
        ;;lua                            ; one-based indices? one-based indices
        (markdown +grip)               ; writing docs for people to ignore
        ;;nim                            ; python + lisp at the speed of c
-       (nix +lsp                      ; I hereby declare "nix geht mehr!"
-            +tree-sitter)             ;
+       ;;(nix +lsp                      ; I hereby declare "nix geht mehr!"
+       ;;     +tree-sitter)             ;
        ;;ocaml                          ; an objective camel
-       org                            ; organize your plain life in plain text
+       (org +pretty                   ; organize your plain life in plain text
+            +pomodoro                 ;
+            +roam2)                   ;
        (php +lsp                      ; perl's insecure younger brother
             +hack                     ; 
             +tree-sitter)             ;
@@ -206,7 +212,7 @@
        :app
        calendar                       ;
        ;;emms                           ;
-       ;;everywhere                     ; *leave* Emacs!? You must be joking
+       everywhere                     ; *leave* Emacs!? You must be joking
        irc                            ; how neckbeards socialize
        (rss +org)                     ; emacs as an RSS reader
 

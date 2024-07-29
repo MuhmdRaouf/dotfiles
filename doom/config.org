@@ -12,7 +12,7 @@ e.g. GPG configuration, email, clients, file templates and snippets. It is optio
 #+BEGIN_SRC emacs-lisp
 (setq 
   user-full-name "Raouf"
-      user-mail-address "mohammed@raouf.me")
+  user-mail-address "mohammed@raouf.me")
 #+END_SRC
 
 Doom exposes five (optional) variables for controlling fonts in Doom:
@@ -28,11 +28,11 @@ For example:
 #+BEGIN_SRC emacs-lisp
 (setq 
   doom-font 
-        (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium)
-      doom-variable-pitch-font 
-        (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium)
-      doom-big-font 
-        (font-spec :family "FiraCode Nerd Font" :size 18 :weight 'medium))
+    (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium)
+  doom-variable-pitch-font 
+    (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium)
+  doom-big-font 
+    (font-spec :family "FiraCode Nerd Font" :size 18 :weight 'medium))
 #+END_SRC
 
 If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -80,6 +80,51 @@ fix Eager macro-expansion failure
 (after! lsp-mode
   ;; https://github.com/emacs-lsp/lsp-mode/issues/3577#issuecomment-1709232622
   (delete 'lsp-terraform lsp-client-packages))
+#+end_src
+
+Enable vertico-prescient for better sorting and filtering
+#+begin_src emacs-lisp
+(use-package! vertico-prescient
+  :hook (vertico-mode . vertico-prescient-mode)
+  :hook (vertico-prescient-mode . prescient-persist-mode)
+  :config
+  (setq prescient-save-file (concat doom-cache-dir "prescient-save.el")))
+#+end_src
+
+Enable corfu-prescient for better sorting and filtering
+#+begin_src emacs-lisp
+(use-package! corfu-prescient
+  :hook (corfu-mode . corfu-prescient-mode)
+  :hook (corfu-prescient-mode . prescient-persist-mode)
+  :config
+  (setq prescient-save-file (concat doom-cache-dir "prescient-save.el")))
+#+end_src
+
+codeium.el
+#+begin_src emacs-lisp
+(use-package! codeium
+  :init
+  ;; use globally
+  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
+
+  ;; lazy loading, if you want
+  :defer t
+
+  :config
+  (setq use-dialog-box nil) ;; do not use popup boxes
+
+  ;; if you don't want to use customize to save the api-key
+  ;; (setq codeium/metadata/api_key "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+
+  ;; get codeium status in the modeline
+  (setq codeium-mode-line-enable
+    (lambda (api) (not (memq api '(CancelRequest Heartbeat AcceptCompletion)))))
+  (add-to-list 'mode-line-format '(:eval (car-safe codeium-mode-line)) t)
+
+  ;; use M-x codeium-diagnose to see apis/fields that would be sent to the local language server
+  (setq codeium-api-enabled
+    (lambda (api)
+      (memq api '(GetCompletions Heartbeat CancelRequest GetAuthToken RegisterUser auth-redirect AcceptCompletion)))))
 #+end_src
 
 Whenever you reconfigure a package,
