@@ -2,10 +2,8 @@
 #""                                 Oh My Zsh                                 ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 zinit as"completion" light-mode wait blockf lucid for \
-    OMZP::adb/_adb \
     OMZP::bundler/_bundler \
     OMZP::docker-compose/_docker-compose \
-    OMZP::gem/_gem \
     OMZP::golang/_golang \
     OMZP::gradle/_gradle \
     OMZP::laravel/_artisan \
