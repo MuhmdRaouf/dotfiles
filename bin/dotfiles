@@ -1,0 +1,256 @@
+#!/bin/bash
+
+### A tidy $HOME is a tidy mind
+# Obey XDG conventions.
+export XDG_CONFIG_HOME="$HOME/.config";
+[ -d "$XDG_CONFIG_HOME" ] || mkdir -p "$XDG_CONFIG_HOME"
+
+export XDG_CACHE_HOME="$HOME/.cache";
+[ -d "$XDG_CACHE_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
+
+export XDG_LOCAL_HOME="$HOME/.local";
+[ -d "$XDG_LOCAL_HOME" ] || mkdir -p "$XDG_LOCAL_HOME"
+
+XDG_BIN_HOME="$XDG_LOCAL_HOME/bin";
+[ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
+
+export XDG_DATA_HOME="$XDG_LOCAL_HOME/share";
+[ -d "$XDG_DATA_HOME" ] || mkdir -p "$XDG_DATA_HOME"
+
+export XDG_STATE_HOME="$XDG_LOCAL_HOME/state";
+[ -d "$XDG_STATE_HOME" ] || mkdir -p "$XDG_STATE_HOME"
+
+export XDG_DOTFILES_HOME="$XDG_CONFIG_HOME/dotfiles"
+
+# Prints regular messages.
+function green_echo() {
+  echo
+  echo -e "\033[0;32m[Message] ${1}\033[0m"
+  echo
+}
+
+# Prints prompts requiring user attention.
+function yellow_echo() {
+  echo
+  echo -e "\033[0;33m[Attention] ${1}\033[0m"
+  echo
+}
+
+# Prints error prompts.
+function red_echo() {
+  echo
+  echo -e "\033[0;31m[Fatal] ${1}\033[0m"
+  echo
+}
+
+# Prompts user yes/no for the installation.
+function selection_prompt() {
+  yellow_echo "Would you like to install $1 related files?"
+  read -p "y/n? > " -n1 -r REPLY # -p for prompt, -n1 for reading 1 character, -r for reading literally
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    green_echo "Deploying $1 related files..."
+    true
+  else
+    green_echo "Skipping $1 related files..."
+    false
+  fi
+}
+
+# Creates a symlink.
+function symlink() {
+  green_echo "Creating symlink for $1 at $2..."
+  ln -sf "$1" "$2"
+}
+
+function clone_dotfiles() {
+  if selection_prompt "Clone dotfiles"; then
+    if [ ! -d "$XDG_DOTFILES_HOME" ]; then
+      git clone git@github.com:MuhmdRaouf/dotfiles.git "$XDG_DOTFILES_HOME"
+    else
+      red_echo "dotfiles already exists."
+    fi
+  fi
+}
+
+function install_bin() {
+  if selection_prompt "Binaries "; then
+    local BINARY_FILES=("dotfiles")
+    for BINARY_FILE in "${BINARY_FILES[@]}"; do
+      local XDG_BINARY_FILES_HOME="${XDG_DOTFILES_HOME}/bin"
+      symlink "${XDG_BINARY_FILES_HOME}/${BINARY_FILE}" "${XDG_BIN_HOME}"
+    done
+  fi
+}
+
+# Installs Homebrew formulae and runs macOS specific
+function install_homebrew_core() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    green_echo "
+      Homebrew Core Formulae/Casks:
+      Existing formulae will be uninstalled.
+      Some casks might not be compitable with non-macOS systems.
+      Do you want to proceed?
+    "
+    if selection_prompt "Homebrew Core"; then
+      brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileCore
+    fi
+  fi
+}
+
+function install_homebrew_optional() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    green_echo "
+      Homebrew Optional Formulae/Casks:
+      This might take a while, and I honestly recommend you to go through each program manually.
+      Do you want to proceed?
+    "
+    if selection_prompt "Homebrew Optional"; then
+      brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileOptional
+    fi
+  fi
+}
+
+function install_doom_emacs() {
+  if selection_prompt "Doom Emacs "; then
+    local XDG_DOOM_CONFIG_HOME="${XDG_DOTFILES_HOME}/doom"
+    symlink "${XDG_DOOM_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+  fi
+}
+
+function install_git() {
+  if selection_prompt "Git "; then
+    local XDG_GIT_CONFIG_HOME="${XDG_DOTFILES_HOME}/git"
+    symlink "${XDG_GIT_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+  fi
+}
+
+function install_neovim() {
+  if selection_prompt "neovim "; then
+    local XDG_VIM_CONFIG_HOME="${XDG_DOTFILES_HOME}/nvim"
+    symlink "${XDG_VIM_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+  fi
+}
+
+function install_tmux() {
+  if selection_prompt "Tmux "; then
+    local TMUX_FOLDERS=("tmux" "tmuxp" "tmux-powerline")
+    for FOLDER in "${TMUX_FOLDERS[@]}"; do
+      local XDG_TMUX_CONFIG_HOME="${XDG_DOTFILES_HOME}/${FOLDER}"
+      symlink "${XDG_TMUX_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+    done
+  fi
+}
+
+function install_zsh() {
+  if selection_prompt "ZSH "; then
+    local XDG_ZSH_CONFIG_HOME="${XDG_DOTFILES_HOME}/zsh"
+    symlink "${XDG_ZSH_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+
+    local ZSH_FILES=("zshrc" "zshenv")
+    for FILE in "${ZSH_FILES[@]}"; do
+      symlink "${XDG_ZSH_CONFIG_HOME}/${FILE}" "${HOME}/.${FILE}"
+    done
+  fi
+}
+
+
+# Installs cross-platform core utilities
+function install() {
+  green_echo "
+     ___      _    __ _ _
+    |   \ ___| |_ / _(_) |___ ___
+    | |) / _ \  _|  _| | / -_|_-<
+    |___/\___/\__|_| |_|_\___/__/
+  "
+
+  clone_dotfiles
+  install_bin
+  install_homebrew_core
+  install_homebrew_optional
+  install_doom_emacs
+  install_git
+  install_neovim
+  install_tmux
+  install_zsh
+
+  yellow_echo "Ending the dotfiles installation..."
+
+  green_echo '
+       ____   __   __U _____ u
+    U | __.)u \ \ / /\| ___.|/
+     \|  _ \/  \ V /  |  _|.
+      | |_) | U_|.|_u | |___
+      |____/    |_|   |_____|
+     _|| \\_.-,//|(_  <<   >>
+    (__) (__)\_) (__)(__) (__)
+  '
+}
+
+# Prints help message about this script
+function help() {
+  green_echo "
+                      Dotfiles Utility Script Usage
+    ===================================================================
+    Syntax: ./dotfiles-deploy.sh <arg>
+    ===================================================================
+
+    args:
+      --clone-dotfiles             : Clone configuration repository.
+      --install                    : Deploy configuration symlinks for cross-platform utilities.
+      --install-bin                : Install binary directory.
+      --install-homebrew-core      : Install homebrew core packages.
+      --install-homebrew-optional  : Install homebrew optional packages.
+      --install-doom-emacs         : Deploy doom emacs configuration symlinks.
+      --install-git                : Deploy git configuration symlinks.
+      --install-neovim             : Deploy neovim configuration symlinks.
+      --install-tmux               : Deploy tmux configuration symlinks.
+      --install-zsh                : Deploy zsh configuration symlinks.
+  "
+}
+
+function main() {
+  case $1 in
+    "--clone-dotfiles")
+      clone_dotfiles
+    ;;
+    "--install")
+      install
+    ;;
+    "--install-bin")
+      install_bin
+    ;;
+    "--install-homebrew-core")
+      install_homebrew_core
+    ;;
+    "--install-homebrew-optional")
+      install_homebrew_optional
+    ;;
+    "--install-doom-emacs")
+      install_doom_emacs
+    ;;
+    "--install-git")
+      install_git
+    ;;
+    "--install-neovim")
+      install_neovim
+    ;;
+    "--install-tmux")
+      install_tmux
+    ;;
+    "--install-zsh")
+      install_zsh
+    ;;
+    "--help")
+      help
+    ;;
+    *)
+     red_echo "Invalid option"
+     help
+    ;;
+  esac
+
+  exit 0
+}
+
+main "$@"
