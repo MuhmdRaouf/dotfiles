@@ -1,0 +1,29 @@
+# Apple
+.DS_Store
+
+# ASDF
+.tool-versions
+
+# direnv
+.envrc
+
+# Emacs
+.dir-locals.el
+
+# JetBrains
+.idea/
+
+# LazyVim
+.lazy.lua
+
+# mise
+.mise-toml
+
+# Projectiles
+.projectile
+
+# VS Code
+.history
+
+# ZSH
+zsh/history
