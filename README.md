@@ -3,15 +3,16 @@
 
 # My Dotfiles
 
-+ **Operating System:** MacOS Catalina / NixOS
-+ **Shell:** zsh 5.7.1 + [zinit](https://github.com/zdharma/zinit)
-+ **Editor:** [Doom Emacs](https://github.com/hlissner/doom-emacs) (and occasionally vim)
-+ **Terminal:** iTerm
++ **Operating System:** MacOS
++ **Shell:** ZSH + [zinit](https://github.com/zdharma-continuum/zinit)
++ **Editor:** [NeoVim](https://www.lazyvim.org/) (and occasionally [Doom Emacs](https://github.com/doomemacs/doomemacs))
++ **Terminal:** iTerm + TMUX
 
 *Works on my machine* ¯\\\_(ツ)_/¯
 
 ## Quick start
 
 ```sh
-curl https://raw.githubusercontent.com/muhmdraouf/dotfiles/master/deploy | sh
+curl -so dotfiles https://raw.githubusercontent.com/MuhmdRaouf/dotfiles/master/bin/dotfiles
+./dotfiles --install
 ```
