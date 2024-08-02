@@ -1,0 +1,23 @@
+session_name: kaizen
+windows:
+  - window_name: home
+    focus: true
+    start_directory: $HOME
+    layout: 2c05,173x45,0,0{105x45,0,0,85,67x45,106,0[67x32,106,0,86,67x12,106,33,87]}
+    options:
+      main-pane-width: 65%
+    panes:
+      - shell_command:
+        focus: true
+      - shell_command:
+          - btm
+      - shell_command:
+          - cmatrix
+
+  - window_name: playground
+    start_directory: $HOME/playground
+
+  - window_name: dotfiles
+    start_directory: $XDG_DOTFILES_HOME
+    panes:
+      - shell_command: vim .
