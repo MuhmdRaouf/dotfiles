@@ -1,0 +1,45 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+format = """
+$all\
+$cmd_duration\
+$fill\
+$os\
+$hostname\
+$time\
+$line_break\
+[$character](bold green)
+"""
+
+[fill]
+symbol = ' '
+
+[cmd_duration]
+min_time = 0
+
+[character]
+success_symbol = "🚀 [❯](bold green)"
+error_symbol = "🔥 [❯](bold red)"
+
+[time]
+disabled = false
+use_12hr = true
+
+[os]
+format = '[$symbol](bold white) '   
+disabled = false
+symbols = { AIX ="➿", AlmaLinux ="💠", Alpaquita ="🔔", Alpine ="🏔️", Amazon ="🙂", Android ="🤖", Arch ="🎗️", Artix ="🎗️", CentOS ="💠", Debian ="🌀", DragonFly ="🐉", Emscripten ="🔗", EndeavourOS ="🚀", Fedora ="🎩", FreeBSD ="😈", Garuda ="🦅", Gentoo ="🗜️", HardenedBSD ="🛡️", Illumos ="🐦", Kali ="🐉", Linux ="🐧", Mabox ="📦", Macos ="", Manjaro ="🥭", Mariner ="🌊", MidnightBSD ="🌘", Mint ="🌿", NetBSD ="🚩", NixOS ="❄️", OpenBSD ="🐡", OpenCloudOS ="☁️", OracleLinux ="🦴", Pop ="🍭", Raspbian ="🍓", RedHatEnterprise ="🎩", Redhat ="🎩", Redox ="🧪", RockyLinux ="💠", SUSE ="🦎", Solus ="⛵", Ubuntu ="🎯", Ultramarine ="🔷", Unknown ="❓", Void =" ", Windows ="🪟", openEuler ="🦉", openSUSE ="🦎" }
+
+[hostname]
+ssh_only = false
+format = 'on [$hostname](bold yellow) '
+
+[username]
+show_always = true
+
+[directory]
+home_symbol = '🏠 ~'

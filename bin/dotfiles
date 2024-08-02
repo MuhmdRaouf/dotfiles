@@ -92,7 +92,7 @@ function install_homebrew_core() {
       Some casks might not be compitable with non-macOS systems.
       Do you want to proceed?
     "
-    if selection_prompt "Homebrew Core"; then
+    if selection_prompt "Homebrew Core "; then
       brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileCore
     fi
   fi
@@ -105,7 +105,7 @@ function install_homebrew_optional() {
       This might take a while, and I honestly recommend you to go through each program manually.
       Do you want to proceed?
     "
-    if selection_prompt "Homebrew Optional"; then
+    if selection_prompt "Homebrew Optional "; then
       brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileOptional
     fi
   fi
@@ -129,6 +129,13 @@ function install_neovim() {
   if selection_prompt "neovim "; then
     local XDG_VIM_CONFIG_HOME="${XDG_DOTFILES_HOME}/nvim"
     symlink "${XDG_VIM_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+  fi
+}
+
+function install_starship() {
+  if selection_prompt "starship 󱓟"; then
+    local XDG_STARSHIP_CONFIG_HOME="${XDG_DOTFILES_HOME}/starship"
+    symlink "${XDG_STARSHIP_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
   fi
 }
 
@@ -171,6 +178,7 @@ function install() {
   install_doom_emacs
   install_git
   install_neovim
+  install_starship
   install_tmux
   install_zsh
 
@@ -204,6 +212,7 @@ function help() {
       --install-doom-emacs         : Deploy doom emacs configuration symlinks.
       --install-git                : Deploy git configuration symlinks.
       --install-neovim             : Deploy neovim configuration symlinks.
+      --install-starship           : Deploy starship configuration symlinks.
       --install-tmux               : Deploy tmux configuration symlinks.
       --install-zsh                : Deploy zsh configuration symlinks.
   "
@@ -234,6 +243,9 @@ function main() {
     ;;
     "--install-neovim")
       install_neovim
+    ;;
+    "--install-starship")
+      install_starship
     ;;
     "--install-tmux")
       install_tmux
