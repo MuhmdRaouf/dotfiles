@@ -1,8 +1,8 @@
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 #""                                Ruby Configs                               ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-export ASDF_GEM_DEFAULT_PACKAGES_FILE="$ASDF_CONFIG_HOME/default-ruby-packages"
-[[ -e "$ASDF_GEM_DEFAULT_PACKAGES_FILE" ]] || cat >> "$ASDF_GEM_DEFAULT_PACKAGES_FILE" << EOM
+export MISE_RUBY_DEFAULT_PACKAGES_FILE="$MISE_CONFIG_DIR/default-ruby-gems"
+[[ -e "$MISE_RUBY_DEFAULT_PACKAGES_FILE" ]] || cat >> "$MISE_RUBY_DEFAULT_PACKAGES_FILE" << EOM
 neovim
 rubocop
 ruby-lsp

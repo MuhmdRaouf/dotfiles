@@ -125,6 +125,13 @@ function install_git() {
   fi
 }
 
+function install_mise() {
+  if selection_prompt "mise-en-place "; then
+    local XDG_MISE_CONFIG_HOME="${XDG_DOTFILES_HOME}/mise"
+    symlink "${XDG_MISE_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+  fi
+}
+
 function install_neovim() {
   if selection_prompt "neovim "; then
     local XDG_VIM_CONFIG_HOME="${XDG_DOTFILES_HOME}/nvim"
@@ -177,6 +184,7 @@ function install() {
   install_homebrew_optional
   install_doom_emacs
   install_git
+  install_mise
   install_neovim
   install_starship
   install_tmux
@@ -211,6 +219,7 @@ function help() {
       --install-homebrew-optional  : Install homebrew optional packages.
       --install-doom-emacs         : Deploy doom emacs configuration symlinks.
       --install-git                : Deploy git configuration symlinks.
+      --install-mise               : Deploy mise-en-place configuration symlinks.
       --install-neovim             : Deploy neovim configuration symlinks.
       --install-starship           : Deploy starship configuration symlinks.
       --install-tmux               : Deploy tmux configuration symlinks.
@@ -240,6 +249,9 @@ function main() {
     ;;
     "--install-git")
       install_git
+    ;;
+    "--install-mise")
+      install_mise
     ;;
     "--install-neovim")
       install_neovim

@@ -1,8 +1,8 @@
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 #""                               Python Configs                              ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-export ASDF_PYTHON_DEFAULT_PACKAGES_FILE="$ASDF_CONFIG_HOME/default-python-packages"
-[[ -e "$ASDF_PYTHON_DEFAULT_PACKAGES_FILE" ]] || cat >> "$ASDF_PYTHON_DEFAULT_PACKAGES_FILE" << EOM
+export MISE_PYTHON_DEFAULT_PACKAGES_FILE="$MISE_CONFIG_DIR/default-python-packages"
+[[ -e "$MISE_PYTHON_DEFAULT_PACKAGES_FILE" ]] || cat >> "$MISE_PYTHON_DEFAULT_PACKAGES_FILE" << EOM
 black
 Cython
 fb-idb

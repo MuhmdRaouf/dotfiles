@@ -1,0 +1,86 @@
+# global tool versions go here
+# you can set these with `mise use -g`
+[tools]
+go = "1.22.5"
+java = "temurin-21.0.4+7.0.LTS"
+node = "22.5.1"
+php = "8.3.9"
+poetry = "1.8.3"
+python = "3.12.4"
+ruby = "3.3.4"
+rust = "1.80.0"
+usage = "latest"
+
+[settings]
+# plugins can read the versions files used by other version managers (if enabled by the plugin)
+# for example, .nvmrc in the case of node's nvm
+
+# enabled by default (unlike asdf)
+legacy_version_file = false
+
+# disable for specific tools
+legacy_version_file_disable_tools = [] 
+
+# configure `mise install` to always keep the downloaded archive
+
+# deleted after install by default
+always_keep_download = false
+
+# deleted on failure by default
+always_keep_install = false
+
+# configure how frequently (in minutes) to fetch updated plugin repository changes
+# this is updated whenever a new runtime is installed
+# (note: this isn't currently implemented but there are plans to add it: https://github.com/jdx/mise/issues/128)
+# set to 0 to disable updates
+plugin_autoupdate_last_check_duration = '1 week'
+
+# config files with these prefixes will be trusted by default
+trusted_config_paths = []
+
+# set to true to see full installation output, see `MISE_VERBOSE`
+verbose = false
+
+# set to true to ensure .tool-versions will be compatible with asdf, see `MISE_ASDF_COMPAT`
+asdf_compat = false
+
+# set the timeout for http requests in seconds, see `MISE_HTTP_TIMEOUT`
+http_timeout = 30
+
+# number of plugins or runtimes to install in parallel. The default is `4`.
+jobs = 4
+
+# set to true to directly pipe plugins to stdin/stdout/stderr
+raw = false
+
+# set to true to automatically answer yes to all prompts
+yes = false
+
+
+# see MISE_NOT_FOUND_AUTO_INSTALL
+not_found_auto_install = true
+
+# see Tasks Runner for more information
+task_output = "prefix"
+
+# see MISE_PARANOID
+paranoid = false
+
+# path to the shorthands file, see `MISE_SHORTHANDS_FILE`
+# shorthands_file = '~/.config/mise/shorthands.toml'
+
+# disable the default shorthands, see `MISE_DISABLE_DEFAULT_SHORTHANDS`
+disable_default_shorthands = false
+
+# disable specific tools, generally used to turn off core tools
+disable_tools = ['bun', 'deno', 'erlang']
+
+env_file = '' # load env vars from a dotenv file, see `MISE_ENV_FILE`
+
+experimental = false # enable experimental features
+
+# always compile with python-build instead of downloading precompiled binaries.
+python_compile = true
+
+# configure messages displayed when entering directories with config files
+status = { missing_tools = "if_other_versions_installed", show_env = false, show_tools = false }

@@ -1,8 +1,8 @@
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 #""                               NodeJS Configs                              ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-export ASDF_NPM_DEFAULT_PACKAGES_FILE="$ASDF_CONFIG_HOME/default-nodejs-packages"
-[[ -e "$ASDF_NPM_DEFAULT_PACKAGES_FILE" ]] || cat >> "$ASDF_NPM_DEFAULT_PACKAGES_FILE" << EOM
+export MISE_NODE_DEFAULT_PACKAGES_FILE="$MISE_CONFIG_DIR/default-node-packages"
+[[ -e "$MISE_NODE_DEFAULT_PACKAGES_FILE" ]] || cat >> "$MISE_NODE_DEFAULT_PACKAGES_FILE" << EOM
 @ansible/ansible-language-server
 bash-language-server
 dockerfile-language-server-nodejs

@@ -1,9 +1,8 @@
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
 #""                               Golang Configs                              ""#
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
-export ASDF_GOLANG_MOD_VERSION_ENABLED=true
-export ASDF_GOLANG_DEFAULT_PACKAGES_FILE="$ASDF_CONFIG_HOME/default-golang-pkgs"
-[[ -e "$ASDF_GOLANG_DEFAULT_PACKAGES_FILE" ]] || cat >> "$ASDF_GOLANG_DEFAULT_PACKAGES_FILE" << EOM
+export MISE_GO_DEFAULT_PACKAGES_FILE="$MISE_CONFIG_DIR/default-golang-pkgs"
+[[ -e "$MISE_GO_DEFAULT_PACKAGES_FILE" ]] || cat >> "$MISE_GO_DEFAULT_PACKAGES_FILE" << EOM
 github.com/cweill/gotests/gotests@latest
 github.com/fatih/gomodifytags@latest
 github.com/jessfraz/dockfmt@latest
