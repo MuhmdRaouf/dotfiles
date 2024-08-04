@@ -17,7 +17,8 @@
 .lazy.lua
 
 # mise
-.mise-toml
+.mise.toml
+.mise.*.toml
 
 # Projectiles
 .projectile
