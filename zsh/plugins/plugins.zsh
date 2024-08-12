@@ -4,7 +4,7 @@
 zinit ice wait id-as'zsh-completions' blockf atpull'zinit creinstall -q .' nocd silent
 zinit light zsh-users/zsh-completions
 
-zinit ice wait id-as'fast-syntax-highlighting' atinit"zpcompinit; zpcdreplay" nocd silent
+zinit ice wait id-as'fast-syntax-highlighting' atpull"fast-theme XDG:catppuccin-mocha" atinit"zpcompinit; zpcdreplay" nocd silent
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit ice wait id-as'zsh-autosuggestions' atload"_zsh_autosuggest_start" nocd silent
