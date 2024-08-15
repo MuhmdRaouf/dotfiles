@@ -139,6 +139,13 @@ function install_git() {
   fi
 }
 
+function install_k9s() {
+  if selection_prompt "K9s ⎈"; then
+    local XDG_K9S_CONFIG_HOME="${XDG_DOTFILES_HOME}/k9s"
+    symlink "${XDG_K9S_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
+  fi
+}
+
 function install_mise() {
   if selection_prompt "mise-en-place "; then
     local XDG_MISE_CONFIG_HOME="${XDG_DOTFILES_HOME}/mise"
@@ -200,6 +207,7 @@ function install() {
   install_doom_emacs
   install_fsh
   install_git
+  install_k9s
   install_mise
   install_neovim
   install_starship
@@ -237,6 +245,7 @@ function help() {
       --install-doom-emacs         : Deploy doom emacs configuration symlinks.
       --install-fsh                : Deploy zsh fast syntax highlighting configuration symlinks.
       --install-git                : Deploy git configuration symlinks.
+      --install-k9s                : Deploy k9s configuration symlinks.
       --install-mise               : Deploy mise-en-place configuration symlinks.
       --install-neovim             : Deploy neovim configuration symlinks.
       --install-starship           : Deploy starship configuration symlinks.
@@ -273,6 +282,9 @@ function main() {
     ;;
     "--install-git")
       install_git
+    ;;
+    "--install-k9s")
+      install_k9s
     ;;
     "--install-mise")
       install_mise
