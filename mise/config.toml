@@ -1,15 +1,15 @@
 # global tool versions go here
 # you can set these with `mise use -g`
 [tools]
-go = "1.22.5"
+go = "1.23.1"
 java = "temurin-21.0.4+7.0.LTS"
-node = "22.5.1"
+node = "22.8.0"
 php = "8.3.9"
 poetry = "1.8.3"
-python = "3.12.4"
-ruby = "3.3.4"
-rust = "1.80.0"
-usage = "latest"
+python = "3.12.6"
+ruby = "3.3.5"
+rust = "1.81.0"
+usage = "0.3.1"
 
 [settings]
 # plugins can read the versions files used by other version managers (if enabled by the plugin)
