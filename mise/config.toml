@@ -1,15 +1,15 @@
 # global tool versions go here
 # you can set these with `mise use -g`
 [tools]
-go = "1.22.5"
-java = "temurin-21.0.4+7.0.LTS"
-node = "22.5.1"
+go = "1.23.3"
+java = "temurin-21.0.5+11.0.LTS"
+node = "22.9.0"
 php = "8.3.9"
-poetry = "1.8.3"
-python = "3.12.4"
-ruby = "3.3.4"
-rust = "1.80.0"
-usage = "latest"
+poetry = "1.8.4"
+python = "3.12.7"
+rust = "1.83.0"
+usage = "1.3.3"
+ruby = "3.3.6"
 
 [settings]
 # plugins can read the versions files used by other version managers (if enabled by the plugin)
@@ -19,7 +19,7 @@ usage = "latest"
 legacy_version_file = false
 
 # disable for specific tools
-legacy_version_file_disable_tools = [] 
+legacy_version_file_disable_tools = []
 
 # configure `mise install` to always keep the downloaded archive
 
@@ -45,7 +45,7 @@ verbose = false
 asdf_compat = false
 
 # set the timeout for http requests in seconds, see `MISE_HTTP_TIMEOUT`
-http_timeout = 30
+http_timeout = "30s"
 
 # number of plugins or runtimes to install in parallel. The default is `4`.
 jobs = 4
