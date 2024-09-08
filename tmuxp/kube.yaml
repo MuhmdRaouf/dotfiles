@@ -1,0 +1,28 @@
+session_name: 'Kubernetes'
+windows:
+  - window_name: K9S
+    focus: 'true'
+    panes:
+      - focus: 'true'
+        shell_command: k9s
+    start_directory: /Users/kaizen
+  - window_name: jumpbox
+    panes:
+      - shell_command:
+          - cmd: ssh jumpbox@orb
+          - cmd: clear
+  - window_name: server
+    panes:
+    - shell_command:
+        - cmd: ssh server@orb
+        - cmd: clear
+  - window_name: node-0
+    panes:
+    - shell_command:
+        - cmd: ssh node-0@orb
+        - cmd: clear
+  - window_name: node-1
+    panes:
+    - shell_command:
+        - cmd: ssh node-1@orb
+        - cmd: clear

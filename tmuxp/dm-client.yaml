@@ -1,0 +1,22 @@
+session_name: 'dm-client'
+windows:
+  - window_name: Editor
+    focus: 'true'
+    start_directory: $HOME/.work/dailymealz/dm-client
+    panes:
+      - focus: 'true'
+        shell_command:
+          - cmd: vim .
+  - window_name: Project
+    start_directory: $HOME/.work/dailymealz/dm-client
+    panes:
+      -
+  - window_name: server
+    start_directory: $HOME/.work/dailymealz/dm-client
+    panes:
+      - shell_command:
+          - cmd: yarn start
+  - window_name: Tests
+    start_directory: $HOME/.work/dailymealz/dm-client
+    panes:
+      -

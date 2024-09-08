@@ -7,17 +7,24 @@ windows:
     options:
       main-pane-width: 65%
     panes:
+      - focus: true
+        shell_command:
+          - cmd: clear
       - shell_command:
-        focus: true
+          - cmd: clear
+          - cmd: btm
       - shell_command:
-          - btm
-      - shell_command:
-          - cmatrix
+          - cmd: clear
+          - cmd: cmatrix
 
   - window_name: playground
     start_directory: $HOME/playground
+    panes:
+      - shell_command:
+          - cmd: clear
 
   - window_name: dotfiles
     start_directory: $XDG_DOTFILES_HOME
     panes:
-      - shell_command: vim .
+      - shell_command:
+          - cmd: vim .
