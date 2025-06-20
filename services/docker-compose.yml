@@ -1,7 +1,0 @@
-include:
-  - docker-compose.watchtower.yml
-  - docker-compose.webui.yml
-
-networks:
-    app-public:
-    app-private:
