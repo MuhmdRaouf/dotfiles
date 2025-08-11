@@ -3,7 +3,7 @@ windows:
   - window_name: home
     focus: true
     start_directory: $HOME
-    layout: 2c05,173x45,0,0{105x45,0,0,85,67x45,106,0[67x32,106,0,86,67x12,106,33,87]}
+    layout: 978f,231x60,0,0{134x60,0,0,1,96x60,135,0[96x39,135,0,2,96x15,135,40,3,96x4,135,56,6]}
     options:
       main-pane-width: 65%
     panes:
@@ -16,6 +16,9 @@ windows:
       - shell_command:
           - cmd: clear
           - cmd: cmatrix
+      - shell_command:
+          - cmd: clear
+          - cmd: caffeinate -t 999999999
 
   - window_name: playground
     start_directory: $HOME/playground
