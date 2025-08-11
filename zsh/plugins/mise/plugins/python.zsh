@@ -5,5 +5,6 @@ export MISE_PYTHON_DEFAULT_PACKAGES_FILE="$MISE_CONFIG_DIR/default-python-packag
 [[ -e "$MISE_PYTHON_DEFAULT_PACKAGES_FILE" ]] || cat >> "$MISE_PYTHON_DEFAULT_PACKAGES_FILE" << EOM
 oci-cli
 pip
+pipx
 EOM
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
