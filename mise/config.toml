@@ -1,18 +1,6 @@
 # global tool versions go here
 # you can set these with `mise use -g`
 [tools]
-awscli = { version = "2.32.26", symlink_bins = "true" }
-go = "1.25.5"
-java = "temurin-21.0.9+10.0.LTS"
-k6 = "1.4.2"
-node = "24.12.0"
-packer = "1.14.3"
-php = "8.4.15"
-poetry = "2.2.1"
-python = "3.14.0"
-ruby = "3.3.10"
-rust = "1.92.0"
-terraform = "1.14.3"
 usage = "latest"
 
 [settings]
