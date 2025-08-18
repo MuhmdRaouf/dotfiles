@@ -13,6 +13,6 @@
 ## Quick start
 
 ```sh
-curl -so dotfiles https://raw.githubusercontent.com/MuhmdRaouf/dotfiles/master/bin/dotfiles
+curl -so dotfiles https://raw.githubusercontent.com/MuhmdRaouf/dotfiles/main/bin/dotfiles
 ./dotfiles --install
 ```

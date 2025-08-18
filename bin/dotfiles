@@ -46,7 +46,7 @@ function red_echo() {
 # Prompts user yes/no for the installation.
 function selection_prompt() {
   yellow_echo "Would you like to install $1 related files?"
-  read -p "y/n? > " -n1 -r REPLY # -p for prompt, -n1 for reading 1 character, -r for reading literally
+  read -p "y/n? > " -n1 -r REPLY # -p for prompt, -n1 for reading 1 character, and -r for reading literally
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     green_echo "Deploying $1 related files..."
@@ -63,10 +63,27 @@ function symlink() {
   ln -sf "$1" "$2"
 }
 
+function select_dotfile_version() {
+  while true; do
+    read -p "Choose dotfile version (main or minimal): " -r dotfile_version # -p for prompt, and -r for reading literally
+    case "${dotfile_version}" in
+      main|minimal)
+        export DOTFILES_BRANCH="${dotfile_version}"
+        green_echo "Selected dotfile: ${dotfile_version}"
+        break
+        ;;
+      *)
+        red_echo "Choose only main or minimal"
+        ;;
+    esac
+  done
+}
+
 function clone_dotfiles() {
+  select_dotfile_version
   if selection_prompt "Clone dotfiles"; then
     if [ ! -d "$XDG_DOTFILES_HOME" ]; then
-      git clone git@github.com:MuhmdRaouf/dotfiles.git "$XDG_DOTFILES_HOME"
+      git clone --branch ${DOTFILES_BRANCH} git@github.com:MuhmdRaouf/dotfiles.git "$XDG_DOTFILES_HOME"
     else
       red_echo "dotfiles already exists."
     fi
