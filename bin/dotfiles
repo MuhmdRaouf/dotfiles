@@ -141,13 +141,6 @@ function install_bottom() {
   fi
 }
 
-function install_doom_emacs() {
-  if selection_prompt "Doom Emacs "; then
-    local XDG_DOOM_CONFIG_HOME="${XDG_DOTFILES_HOME}/doom"
-    symlink "${XDG_DOOM_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
-  fi
-}
-
 function install_fsh() {
   if selection_prompt "ZSH Fast Syntax Highlighting "; then
     local XDG_FSH_CONFIG_HOME="${XDG_DOTFILES_HOME}/fsh"
@@ -228,7 +221,6 @@ function install() {
   install_homebrew_core
   install_homebrew_optional
   install_bottom
-  install_doom_emacs
   install_fsh
   install_git
   install_k9s
@@ -267,7 +259,6 @@ function help() {
       --install-homebrew-core      : Install homebrew core packages.
       --install-homebrew-optional  : Install homebrew optional packages.
       --install_bottom             : Deploy bottom configuration symlinks.
-      --install-doom-emacs         : Deploy doom emacs configuration symlinks.
       --install-fsh                : Deploy zsh fast syntax highlighting configuration symlinks.
       --install-git                : Deploy git configuration symlinks.
       --install-k9s                : Deploy k9s configuration symlinks.
@@ -301,9 +292,6 @@ function main() {
     ;;
     "--install-bottom")
       install_bottom
-    ;;
-    "--install-doom-emacs")
-      install_doom_emacs
     ;;
     "--install-fsh")
       install_fsh
