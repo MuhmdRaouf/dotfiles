@@ -10,6 +10,8 @@ gitlab-ci-local
 npm
 npm-check-updates
 pnpm
+typescript
+typescript-language-server
 yarn
 EOM
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##

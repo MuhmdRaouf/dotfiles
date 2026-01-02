@@ -6,5 +6,7 @@ export MISE_PYTHON_DEFAULT_PACKAGES_FILE="$MISE_CONFIG_DIR/default-python-packag
 oci-cli
 pip
 pipx
+pyright
+python-lsp-server[all]
 EOM
 ##"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""##
