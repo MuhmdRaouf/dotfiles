@@ -28,3 +28,15 @@
 
 # ZSH
 zsh/history
+
+# Claude
+.claude/
+CLAUDE.md
+
+# Beads
+.beads/
+AGENTS.md
+
+# SpecKit
+.specify/
+specs/
