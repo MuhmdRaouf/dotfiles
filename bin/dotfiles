@@ -100,7 +100,13 @@ function install_bin() {
   fi
 }
 
-# Installs Homebrew formulae and runs macOS specific
+function install_claude_code_router() {
+  if selection_prompt "Claude Code Router "; then
+    local XDG_CLAUDE_CODE_ROUTER_CONFIG_HOME="${XDG_DOTFILES_HOME}/claude-code-router"
+    symlink "${XDG_CLAUDE_CODE_ROUTER_CONFIG_HOME}" "${HOME}/.claude-code-router"
+  fi
+}
+
 function install_homebrew_core() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     green_echo "
@@ -225,6 +231,7 @@ function install() {
 
   clone_dotfiles
   install_bin
+  install_claude_code_router
   install_homebrew_core
   install_homebrew_optional
   install_bottom
@@ -264,6 +271,7 @@ function help() {
       --clone-dotfiles             : Clone configuration repository.
       --install                    : Deploy configuration symlinks for cross-platform utilities.
       --install-bin                : Install binary directory.
+      --install-claude-code-router : Install claude code router configuration symlinks.
       --install-homebrew-core      : Install homebrew core packages.
       --install-homebrew-optional  : Install homebrew optional packages.
       --install_bottom             : Deploy bottom configuration symlinks.
@@ -289,6 +297,9 @@ function main() {
     ;;
     "--install-bin")
       install_bin
+    ;;
+    "--install-claude-code-router")
+      install_claude_code_router
     ;;
     "--install-homebrew-core")
       install_homebrew_core

@@ -1,0 +1,21 @@
+{
+    "PORT": 3456,
+    "Providers": [
+        {
+            "name": "ollama",
+            "api_base_url": "http://localhost:11434/v1/chat/completions",
+            "api_key": "ollama",
+            "models": [
+                "devstral-2:123b-cloud"
+            ]
+        }
+    ],
+    "Router": {
+        "default": "ollama,devstral-2:123b-cloud",
+        "background": "ollama,devstral-2:123b-cloud",
+        "think": "ollama,devstral-2:123b-cloud",
+        "longContext": "ollama,devstral-2:123b-cloud",
+        "longContextThreshold": 256000,
+        "webSearch": "ollama,devstral-2:123b-cloud"
+    }
+}
