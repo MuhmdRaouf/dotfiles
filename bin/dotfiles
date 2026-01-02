@@ -107,33 +107,6 @@ function install_claude_code_router() {
   fi
 }
 
-function install_homebrew_core() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    green_echo "
-      Homebrew Core Formulae/Casks:
-      Existing formulae will be uninstalled.
-      Some casks might not be compitable with non-macOS systems.
-      Do you want to proceed?
-    "
-    if selection_prompt "Homebrew Core "; then
-      brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileCore
-    fi
-  fi
-}
-
-function install_homebrew_optional() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    green_echo "
-      Homebrew Optional Formulae/Casks:
-      This might take a while, and I honestly recommend you to go through each program manually.
-      Do you want to proceed?
-    "
-    if selection_prompt "Homebrew Optional "; then
-      brew bundle --file "${XDG_DOTFILES_HOME}"/homebrew/BrewfileOptional
-    fi
-  fi
-}
-
 function install_bottom() {
   if selection_prompt "Bottom 󱕎"; then
     local XDG_BTM_CONFIG_HOME="${XDG_DOTFILES_HOME}/bottom"
@@ -218,8 +191,6 @@ function install() {
   clone_dotfiles
   install_bin
   install_claude_code_router
-  install_homebrew_core
-  install_homebrew_optional
   install_bottom
   install_fsh
   install_git
@@ -256,8 +227,6 @@ function help() {
       --install                    : Deploy configuration symlinks for cross-platform utilities.
       --install-bin                : Install binary directory.
       --install-claude-code-router : Install claude code router configuration symlinks.
-      --install-homebrew-core      : Install homebrew core packages.
-      --install-homebrew-optional  : Install homebrew optional packages.
       --install_bottom             : Deploy bottom configuration symlinks.
       --install-fsh                : Deploy zsh fast syntax highlighting configuration symlinks.
       --install-git                : Deploy git configuration symlinks.
@@ -283,12 +252,6 @@ function main() {
     ;;
     "--install-claude-code-router")
       install_claude_code_router
-    ;;
-    "--install-homebrew-core")
-      install_homebrew_core
-    ;;
-    "--install-homebrew-optional")
-      install_homebrew_optional
     ;;
     "--install-bottom")
       install_bottom
