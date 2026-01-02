@@ -155,13 +155,6 @@ function install_fsh() {
   fi
 }
 
-function install_ghostty() {
-  if selection_prompt "Ghostty 󰊠"; then
-    local XDG_GHOSTTY_CONFIG_HOME="${XDG_DOTFILES_HOME}/ghostty"
-    symlink "${XDG_GHOSTTY_CONFIG_HOME}" "${XDG_CONFIG_HOME}"
-  fi
-}
-
 function install_git() {
   if selection_prompt "Git "; then
     local XDG_GIT_CONFIG_HOME="${XDG_DOTFILES_HOME}/git"
@@ -237,7 +230,6 @@ function install() {
   install_bottom
   install_doom_emacs
   install_fsh
-  install_ghostty
   install_git
   install_k9s
   install_mise
@@ -315,9 +307,6 @@ function main() {
     ;;
     "--install-fsh")
       install_fsh
-    ;;
-    "--install-ghostty")
-      install_ghostty
     ;;
     "--install-git")
       install_git
