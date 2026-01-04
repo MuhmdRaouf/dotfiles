@@ -1,21 +1,22 @@
 {
-    "PORT": 3456,
-    "Providers": [
-        {
-            "name": "ollama",
-            "api_base_url": "http://localhost:11434/v1/chat/completions",
-            "api_key": "ollama",
-            "models": [
-                "devstral-2:123b-cloud"
-            ]
-        }
-    ],
-    "Router": {
-        "default": "ollama,devstral-2:123b-cloud",
-        "background": "ollama,devstral-2:123b-cloud",
-        "think": "ollama,devstral-2:123b-cloud",
-        "longContext": "ollama,devstral-2:123b-cloud",
-        "longContextThreshold": 256000,
-        "webSearch": "ollama,devstral-2:123b-cloud"
+  "PORT": 3456,
+  "Providers": [
+    {
+      "name": "ollama",
+      "api_base_url": "http://172.16.0.5:11434/v1/chat/completions",
+      "api_key": "ollama",
+      "models": [
+        "gpt-oss:20b",
+        "nemotron-3-nano:30b"
+      ]
     }
+  ],
+  "Router": {
+    "default": "ollama,gpt-oss:20b",
+    "background": "ollama,gpt-oss:20b",
+    "think": "ollama,gpt-oss:20b",
+    "longContext": "ollama,gpt-oss:20b",
+    "longContextThreshold": 65536,
+    "webSearch": "ollama,gpt-oss:20b"
+  }
 }
