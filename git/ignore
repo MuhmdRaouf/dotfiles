@@ -37,6 +37,9 @@ CLAUDE.md
 .beads/
 AGENTS.md
 
+# Gemini
+GEMINI.md
+
 # SpecKit
 .specify/
 specs/
