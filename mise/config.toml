@@ -2,10 +2,14 @@
 # you can set these with `mise use -g`
 [tools]
 awscli = { version = "2.32.26", symlink_bins = "true" }
+bun = "1.3.5"
+e1s = "1.0.52"
 go = "1.25.5"
 java = "temurin-21.0.9+10.0.LTS"
 k6 = "1.4.2"
+k9s = "0.50.16"
 node = "24.12.0"
+opencode = "1.1.8"
 packer = "1.14.3"
 php = "8.4.15"
 poetry = "2.2.1"
