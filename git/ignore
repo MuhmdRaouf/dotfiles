@@ -29,17 +29,33 @@
 # ZSH
 zsh/history
 
-# Claude
-.claude/
-CLAUDE.md
-
 # Beads
 .beads/
 AGENTS.md
 
+# Claude
+CLAUDE.md
+.claude/
+.mcp.json
+.playwright-mcp
+
+# Codex
+.codex/
+
+# Cursor
+.cursor/
+
 # Gemini
+.gemini/
 GEMINI.md
+
+# OpenCode
+.opencode/
+.sisyphus/
 
 # SpecKit
 .specify/
 specs/
+
+# Windsurf
+.windsurf/
