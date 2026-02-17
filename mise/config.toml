@@ -1,94 +1,233 @@
-# global tool versions go here
-# you can set these with `mise use -g`
+# mise global configuration
+# managed via `mise use -g` for tools, manual edits for settings
+# full settings reference: https://mise.jdx.dev/configuration/settings.html
 [tools]
 awscli = { version = "2.32.26", symlink_bins = "true" }
-bun = "1.3.5"
+bun = "1.3.7"
 e1s = "1.0.52"
 go = "1.25.5"
 java = "temurin-21.0.9+10.0.LTS"
 k6 = "1.4.2"
 k9s = "0.50.16"
-node = "24.12.0"
-opencode = "1.1.8"
+node = "24.13.0"
+opencode = "1.1.36"
 packer = "1.14.3"
 php = "8.4.15"
-poetry = "2.2.1"
+poetry = "2.3.1"
 python = "3.14.0"
-ruby = "3.3.10"
+ruby = "3.4.8"
 rust = "1.92.0"
 terraform = "1.14.3"
 usage = "latest"
 
 [settings]
-# plugins can read the versions files used by other version managers (if enabled by the plugin)
-# for example, .nvmrc in the case of node's nvm
+# doc: https://mise.jdx.dev/configuration/settings.html#activate_aggressive
+# prioritize mise shims/paths over other shell modifications
+activate_aggressive = true
 
-# enabled by default (unlike asdf)
-legacy_version_file = false
+# doc: https://mise.jdx.dev/configuration/settings.html#all_compile
+# compile all tools from source instead of using precompiled binaries
+all_compile = false
 
-# disable for specific tools
-legacy_version_file_disable_tools = []
-
-# configure `mise install` to always keep the downloaded archive
-
-# deleted after install by default
+# doc: https://mise.jdx.dev/configuration/settings.html#always_keep_download
+# retain downloaded archives after installation
 always_keep_download = false
 
-# deleted on failure by default
+# doc: https://mise.jdx.dev/configuration/settings.html#always_keep_install
+# keep install files even when installation fails
 always_keep_install = false
 
-# configure how frequently (in minutes) to fetch updated plugin repository changes
-# this is updated whenever a new runtime is installed
-# (note: this isn't currently implemented but there are plans to add it: https://github.com/jdx/mise/issues/128)
-# set to 0 to disable updates
-plugin_autoupdate_last_check_duration = '1 week'
+# doc: https://mise.jdx.dev/configuration/settings.html#auto_install
+# automatically install missing tools when entering a directory with a config
+auto_install = true
 
-# config files with these prefixes will be trusted by default
-trusted_config_paths = []
+# doc: https://mise.jdx.dev/configuration/settings.html#auto_install_disable_tools
+# tools to exclude from automatic installation
+auto_install_disable_tools = []
 
-# set to true to see full installation output, see `MISE_VERBOSE`
-verbose = false
+# doc: https://mise.jdx.dev/configuration/settings.html#cache_prune_age
+# age threshold for cache file deletion
+cache_prune_age = "1d"
 
-# set to true to ensure .tool-versions will be compatible with asdf, see `MISE_ASDF_COMPAT`
-asdf_compat = false
+# doc: https://mise.jdx.dev/configuration/settings.html#color
+# enable colored terminal output
+color = true
 
-# set the timeout for http requests in seconds, see `MISE_HTTP_TIMEOUT`
+# doc: https://mise.jdx.dev/configuration/settings.html#color_theme
+# color scheme for interactive prompts
+color_theme = "catppuccin"
+
+# doc: https://mise.jdx.dev/configuration/settings.html#default_config_filename
+# default configuration file name
+default_config_filename = "mise.toml"
+
+# doc: https://mise.jdx.dev/configuration/settings.html#default_tool_versions_filename
+# default tool versions file name
+default_tool_versions_filename = ".tool-versions"
+
+# doc: https://mise.jdx.dev/configuration/settings.html#disable_backends
+# backends to disable globally
+disable_backends = []
+
+# doc: https://mise.jdx.dev/configuration/settings.html#disable_default_registry
+# disable the built-in tool name registry
+disable_default_registry = false
+
+# doc: https://mise.jdx.dev/configuration/settings.html#disable_hints
+# suppress helpful contextual hints
+disable_hints = []
+
+# doc: https://mise.jdx.dev/configuration/settings.html#disable_tools
+# ignore specified tools in config files
+disable_tools = []
+
+# doc: https://mise.jdx.dev/configuration/settings.html#enable_tools
+# when non-empty, ONLY these tools are used
+enable_tools = []
+
+# doc: https://mise.jdx.dev/configuration/settings.html#env
+# enable profile-specific config files (e.g. mise.development.toml)
+env = []
+
+# doc: https://mise.jdx.dev/configuration/settings.html#env_cache
+# cache computed environment to disk for faster shell startup
+env_cache = false
+
+# doc: https://mise.jdx.dev/configuration/settings.html#env_cache_ttl
+# cache validity duration before regeneration
+env_cache_ttl = "1h"
+
+# doc: https://mise.jdx.dev/configuration/settings.html#env_file
+# file containing environment variables to load
+env_file = ''
+
+# doc: https://mise.jdx.dev/configuration/settings.html#exec_auto_install
+# auto-install tools during `mise x` execution
+exec_auto_install = true
+
+# doc: https://mise.jdx.dev/configuration/settings.html#experimental
+# enable experimental features and beta functionality
+experimental = false
+
+# doc: https://mise.jdx.dev/configuration/settings.html#fetch_remote_versions_cache
+# how long to cache remote version listings
+fetch_remote_versions_cache = "1h"
+
+# doc: https://mise.jdx.dev/configuration/settings.html#fetch_remote_versions_timeout
+# http timeout for fetching remote versions
+fetch_remote_versions_timeout = "20s"
+
+# doc: https://mise.jdx.dev/configuration/settings.html#gpg_verify
+# use GPG to verify all tool signatures
+gpg_verify = true
+
+# doc: https://mise.jdx.dev/configuration/settings.html#http_retries
+# http request retry attempts with exponential backoff
+http_retries = 3
+
+# doc: https://mise.jdx.dev/configuration/settings.html#http_timeout
+# http request timeout duration
 http_timeout = "30s"
 
-# number of plugins or runtimes to install in parallel. The default is `4`.
-jobs = 4
+# doc: https://mise.jdx.dev/configuration/settings.html#idiomatic_version_file_enable_tools
+# tools that can read idiomatic version files (e.g. .nvmrc, .ruby-version)
+idiomatic_version_file_enable_tools = []
 
-# set to true to directly pipe plugins to stdin/stdout/stderr
+# doc: https://mise.jdx.dev/configuration/settings.html#ignored_config_paths
+# config paths to skip during discovery
+ignored_config_paths = []
+
+# doc: https://mise.jdx.dev/configuration/settings.html#jobs
+# number of concurrent install jobs
+jobs = 8
+
+# doc: https://mise.jdx.dev/configuration/settings.html#lockfile
+# enable reading/updating lockfiles
+lockfile = true
+
+# doc: https://mise.jdx.dev/configuration/settings.html#paranoid
+# enable extra-secure behavior and validations
+paranoid = true
+
+# doc: https://mise.jdx.dev/configuration/settings.html#pin
+# pin exact versions by default in `mise use`
+pin = true
+
+# doc: https://mise.jdx.dev/configuration/settings.html#plugin_autoupdate_last_check_duration
+# how frequently to check for plugin updates
+plugin_autoupdate_last_check_duration = '7d'
+
+# doc: https://mise.jdx.dev/configuration/settings.html#quiet
+# suppress all output except errors
+quiet = false
+
+# doc: https://mise.jdx.dev/configuration/settings.html#raw
+# connect stdin/stdout/stderr directly to child processes
 raw = false
 
-# set to true to automatically answer yes to all prompts
-yes = false
+# doc: https://mise.jdx.dev/configuration/settings.html#silent
+# suppress task and mise output except errors
+silent = false
 
+# doc: https://mise.jdx.dev/configuration/settings.html#slsa
+# enable SLSA provenance verification globally
+slsa = true
 
-# see MISE_NOT_FOUND_AUTO_INSTALL
-not_found_auto_install = true
+# doc: https://mise.jdx.dev/configuration/settings.html#verbose
+# show verbose output including installation logs
+verbose = false
 
-# see Tasks Runner for more information
-task_output = "prefix"
+# doc: https://mise.jdx.dev/configuration/settings.html#status
+[settings.status]
+missing_tools = "if_other_versions_installed"
+show_env = false
+show_tools = false
+show_prepare_stale = true
+truncate = true
 
-# see MISE_PARANOID
-paranoid = false
+# doc: https://mise.jdx.dev/configuration/settings.html#age
+[settings.age]
+key_file = "~/.config/mise/age.txt"
+strict = true
 
-# path to the shorthands file, see `MISE_SHORTHANDS_FILE`
-# shorthands_file = '~/.config/mise/shorthands.toml'
+# doc: https://mise.jdx.dev/configuration/settings.html#aqua
+[settings.aqua]
+baked_registry = true
+cosign = true
+github_attestations = true
+minisign = true
+slsa = true
 
-# disable the default shorthands, see `MISE_DISABLE_DEFAULT_SHORTHANDS`
-disable_default_shorthands = false
+# doc: https://mise.jdx.dev/configuration/settings.html#cargo
+[settings.cargo]
+binstall = true
 
-# disable specific tools, generally used to turn off core tools
-disable_tools = ['bun', 'deno', 'erlang']
+# doc: https://mise.jdx.dev/configuration/settings.html#node
+[settings.node]
 
-env_file = '' # load env vars from a dotenv file, see `MISE_ENV_FILE`
+# doc: https://mise.jdx.dev/configuration/settings.html#npm
+[settings.npm]
+package_manager = "npm"
 
-experimental = false # enable experimental features
+# doc: https://mise.jdx.dev/configuration/settings.html#pipx
+[settings.pipx]
+registry_url = "https://pypi.org/pypi/{}/json"
+uvx = true
 
-# always compile with python-build instead of downloading precompiled binaries.
-python_compile = true
+# doc: https://mise.jdx.dev/configuration/settings.html#python
+[settings.python]
+compile = true
+precompiled_flavor = "install_only_stripped"
+pyenv_repo = "https://github.com/pyenv/pyenv.git"
+uv_venv_auto = false
+venv_stdlib = false
 
-# configure messages displayed when entering directories with config files
-status = { missing_tools = "if_other_versions_installed", show_env = false, show_tools = false }
+# doc: https://mise.jdx.dev/configuration/settings.html#ruby
+[settings.ruby]
+precompiled_url = "jdx/ruby"
+ruby_build_repo = "https://github.com/rbenv/ruby-build.git"
+ruby_install = false
+ruby_install_repo = "https://github.com/postmodern/ruby-install.git"
+
+# doc: https://mise.jdx.dev/configuration/settings.html#rust
+[settings.rust]
